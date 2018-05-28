@@ -68,9 +68,10 @@ canvas {
   }
   body {
     background-image:url('../images/mobile_logo.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
   }
-
   i {
-    font-size: 40px
+    font-size: 70px
   }
 }
