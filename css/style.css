@@ -1,5 +1,4 @@
 body {
-  /*background-image:url('../images/sunset.jpg');*/
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -66,5 +65,12 @@ canvas {
 @media screen and (max-device-width: 480px) {
   canvas {
     display: none;
+  }
+  body {
+    background-image:url('../images/mobile_logo.jpg');
+  }
+
+  i {
+    font-size: 40px
   }
 }
