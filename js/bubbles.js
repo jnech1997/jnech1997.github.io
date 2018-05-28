@@ -333,3 +333,4 @@ var myName = "Joseph Nechleba";
 var letterColors = [green, blue, red, orange, purple]
 bubbleShape="circle";
 drawName(myName, letterColors);
+bounceBubbles();
