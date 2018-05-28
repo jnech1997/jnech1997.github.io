@@ -99,8 +99,6 @@ canvas {
     background-color: #1a6ef4;
     background-image:url('../images/mobile_logo_wide.png');
     background-size: cover;
-    height: 100%;
-    font-size: 70px;
   }
   .header_left {
     width: 0%;
