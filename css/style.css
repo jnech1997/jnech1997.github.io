@@ -67,9 +67,7 @@ canvas {
     display: none;
   }
   body {
-    background-image:url('../images/mobile_logo.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-image:url('../images/mobile_big_logo.png');
   }
   i {
     font-size: 70px
