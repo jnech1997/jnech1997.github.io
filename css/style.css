@@ -27,13 +27,6 @@ p {
   justify-content: flex-end;
 }
 
-.footer {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 10%;
-}
-
 #back2Top {
     cursor: pointer;
     -moz-transform: rotate(90deg);
@@ -62,16 +55,38 @@ canvas {
   align-content: center;
 }
 
+.footer {
+  display: none;
+}
+
 @media screen and (max-device-width: 480px) {
   canvas {
     display: none;
   }
   body {
+    background-color: #1a6ef4;
     background-image:url('../images/mobile_big_logo.png');
     background-size: cover;
     height: 100%;
+    font-size: 70px;
   }
-  i {
-    font-size: 70px
+  #desk_left_logo {
+    display: none;
+  }
+  .footer {
+    display: block;
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    height: 15%;
+    text-align: center;
+  }
+  .header_left {
+    width: 0%;
+  }
+  .header_right {
+    display: inline-flex;
+    justify-content: center;
+    width: 100%;
   }
 }
