@@ -236,7 +236,7 @@ function drawName(name, letterColors) {
       myName = "Joe";
     }
     else if (window.innerWidth < 1200) {
-      myName = "Joseph";
+      myName = "Nechleba";
     }
     else {
       myName = "Joe Nechleba"
