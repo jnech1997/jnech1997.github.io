@@ -59,7 +59,6 @@ i {
 
 canvas {
   display: flex;
-  align-items: stretch;
   align-content: center;
 }
 
