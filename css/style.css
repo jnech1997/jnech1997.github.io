@@ -68,6 +68,8 @@ canvas {
   }
   body {
     background-image:url('../images/mobile_big_logo.png');
+    background-size: cover;
+    height: 100%;
   }
   i {
     font-size: 70px
