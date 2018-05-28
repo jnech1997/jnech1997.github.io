@@ -1,0 +1,70 @@
+body {
+  background-image:url('../images/sunset.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+p {
+  color: #04080F;
+}
+
+.header {
+  display: inline-flex;
+  width: 100%;
+  height: 20%;
+}
+
+.header_left {
+  display: flex;
+  width: 50%;
+  height: 10%;
+  justify-content: flex-start;
+}
+
+.header_right {
+  display: flex;
+  width: 50%;
+  height: 10%;
+  justify-content: flex-end;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 10%;
+}
+
+#back2Top {
+    cursor: pointer;
+    -moz-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+    position: fixed;
+    bottom: 20px;
+    color: #04080F;
+    text-align: center;
+    font-size: 30px;
+    text-decoration: none;
+}
+#back2Top:hover {
+    color: #FFF;
+}
+
+i {
+  padding: 10px;
+}
+
+canvas {
+  display: flex;
+  align-items: stretch;
+  align-content: center;
+}
+
+/*@media only screen and (max-width: 1220px) {
+  canvas {
+    display: none;
+  }
+}*/
