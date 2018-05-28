@@ -241,7 +241,6 @@ function drawName(name, letterColors) {
       myName = "Joe Nechleba"
       isMobile = false;;
     }
-    //updateCanvasDimensions();
     var g = [];
     var offset = 0;
 

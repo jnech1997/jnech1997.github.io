@@ -50,7 +50,7 @@ p {
     text-decoration: none;
 }
 #back2Top:hover {
-    color: #FFF;
+    color: #04080F;
 }
 
 i {
@@ -63,7 +63,7 @@ canvas {
   align-content: center;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-device-width: 480px) {
   canvas {
     display: none;
   }
