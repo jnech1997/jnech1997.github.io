@@ -271,7 +271,7 @@ function drawName(name, letterColors) {
                 g.push(new Point(point[0] * .8 + offset,
                     point[1],
                     0.0,
-                    point[2],
+                    point[2] * .8,
                     makeColor(bc, point[3])));
             }
             offset += document.alphabet[cc_hex].W;
