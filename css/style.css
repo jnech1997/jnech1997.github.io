@@ -98,7 +98,7 @@ canvas {
   body {
     background-color: #1a6ef4;
     background-image:url('../images/mobile_logo_wide.png');
-    background-size: cover;
+    background-size: auto;
     background-repeat: no-repeat;
     height: 80%;
   }
