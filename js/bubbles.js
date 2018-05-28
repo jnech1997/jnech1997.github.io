@@ -159,7 +159,7 @@ function initEventListeners() {
 function updateCanvasDimensions() {
     canvas.attr({
         height: window.innerHeight * .5,
-        width: window.innerWidth
+        width: window.innerWidth * .8
     });
     canvasWidth = canvas.width();
     canvasHeight = canvas.height();
@@ -268,13 +268,13 @@ function drawName(name, letterColors) {
             for (var i = 0; i < chr_data.length; ++i) {
                 point = chr_data[i];
 
-                g.push(new Point(point[0] * .8 + offset,
+                g.push(new Point(point[0] + offset,
                     point[1],
                     0.0,
-                    point[2] * .8,
+                    point[2],
                     makeColor(bc, point[3])));
             }
-            offset += document.alphabet[cc_hex].W - 10;
+            offset += document.alphabet[cc_hex].W;
         }
     }
 
