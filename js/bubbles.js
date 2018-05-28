@@ -229,17 +229,17 @@ function update() {
 }
 
 function drawName(name, letterColors) {
-    if (window.innerWidth < 600) {
-      myName = "";
-    }
-    else if (window.innerWidth < 900) {
+    if (window.innerWidth < 900) {
       myName = "Joe";
+      isMobile = true;
     }
     else if (window.innerWidth < 1200) {
       myName = "Nechleba";
+      isMobile = true;
     }
     else {
       myName = "Joe Nechleba"
+      isMobile = false;;
     }
     //updateCanvasDimensions();
     var g = [];
@@ -313,6 +313,7 @@ var canvasHeight;
 var canvasWidth;
 var ctx;
 var pointCollection;
+var isMobile = false;
 
 document.rotationForce = 0.0;
 document.Friction = 0.85;

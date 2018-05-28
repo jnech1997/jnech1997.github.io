@@ -1,5 +1,5 @@
 body {
-  background-image:url('../images/sunset.jpg');
+  /*background-image:url('../images/sunset.jpg');*/
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -63,8 +63,8 @@ canvas {
   align-content: center;
 }
 
-/*@media only screen and (max-width: 1220px) {
+@media only screen and (max-width: 600px) {
   canvas {
     display: none;
   }
-}*/
+}
