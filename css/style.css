@@ -63,7 +63,7 @@ canvas {
   align-content: center;
 }
 
-@media only screen and (max-device-width: 480px) {
+@media screen and (max-device-width: 480px) {
   canvas {
     display: none;
   }
