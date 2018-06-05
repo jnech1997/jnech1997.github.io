@@ -152,6 +152,9 @@ canvas {
     height: 100%;
     font-size: 70px;
   }
+  .parallax_0 {
+    display: none;
+  }
   .parallax_1 {
     display: none;
   }
@@ -160,6 +163,9 @@ canvas {
   }
   #back2Top {
     display:none;
+  }
+  #nameDraw {
+    display: none;
   }
   #mobile_footer {
     display: block;
@@ -193,6 +199,9 @@ canvas {
     background-image:url('../images/mobile_logo_wide.png');
     background-size: cover;
     background-repeat: no-repeat;
+  }
+  #nameDraw {
+    display: none;
   }
   .parallax_1 {
     display: none;
