@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type= "text/css" href="./style.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+        <script src="./graphGenerator.js"></script>
+        <script src="./queue.js"></script>
+    </head>
+
+    <body>
+        <h3 id="title">Graph Visualization of Search Algorithms</h3>
+        <div style= "width: 100%; height: 100%; text-align: center">
+            <div style= "display: inline-block; height: 100%; width: 45%">
+                <p>Breadth First Search</p>
+                <svg id= "graphSpace0" height= "80%"></svg>
+            </div>
+            <div style= "display: inline-block; height:100%; width:45%">
+                <p>Depth First Search</p>
+                <svg id= "graphSpace1" height= "80%"></svg>
+            </div>
+        </div>
+        <script id="graph">
+            /**Sleep function:
+            https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep */
+            function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+
+            /* Return a list of nodes that represents the path of the
+            BFS or DFS from startNode to endNode. Pre: settled is the
+            map of nodes to their backpointers along the path. endNode is the
+            destination node along the path. */
+            function path(settled, endNode, type) {
+                var backwards_path= [];
+                while (endNode != null) {
+                    var x= endNode.cx;
+                    var y= endNode.cy;
+                    backwards_path.push(endNode);
+                    endNode= settled.get(endNode);
+                    if (endNode != null) {
+                        var id= x * endNode.cx + y * endNode.cy;
+                        if (type === "d") {
+                            id= "d"+ id;
+                        }
+                        else {
+                            id= "b"+ id;
+                        }
+                        $("#"+id).css("stroke", "red");
+                        $("#"+id).css("opacity", 1);
+                    }
+                }
+                return backwards_path.reverse();
+            }
+
+            /* Return a path from a start node to an end node using DFS */
+            async function DFS(nodes, graph, startNode, endNode) {
+                var settled= new Map();
+                var frontier= new Stack();
+                settled.set(startNode, null);
+                frontier.push(startNode);
+                while (!frontier.isEmpty()) {
+                    var f= frontier.pop();
+                    if (f == endNode) {return endDisplay(path(settled, f, "d"), "d");}
+                    neighbors= graph.get(f);
+                    for (let n of neighbors) {
+                        var id= (f.cx * n.cx) + (f.cy * n.cy);
+                        id= "d"+ id;
+                        $("#"+id).css("stroke", "magenta");
+                        $("#"+id).css("opacity", 1);
+                        await sleep(30);
+                        if (!settled.has(n)) {
+                            frontier.push(n);
+                            settled.set(n, f);
+                        }
+                        $("#"+id).css("stroke", "black");
+                        $("#"+id).css("opacity", .1);
+                    }
+                }
+                document.getElementById("title").innerHTML= "No path was found!";
+                return [];
+            }
+
+            /* Return a path from a start node to an end node using BFS */
+            async function BFS(nodes, graph, startNode, endNode) {
+                var settled= new Map();
+                var frontier= new Queue();
+                settled.set(startNode, null);
+                frontier.enqueue(startNode, 0);
+                while (!frontier.isEmpty()) {
+                    var f= frontier.dequeue();
+                    if (f == endNode) {return endDisplay(path(settled, f, "b"), "b");}
+                    neighbors= graph.get(f);
+                    for (let n of neighbors) {
+                        var id= (f.cx * n.cx) + (f.cy * n.cy);
+                        id= "b"+ id;
+                        $("#"+id).css("stroke", "magenta");
+                        $("#"+id).css("opacity", 1);
+                        await sleep(30);
+                        if (!settled.has(n)) {
+                            frontier.enqueue(n);
+                            settled.set(n, f);
+                        }
+                        $("#"+id).css("stroke", "black");
+                        $("#"+id).css("opacity", .1);
+                    }
+                }
+                document.getElementById("title").innerHTML= "No path was found!";
+                return [];
+            }
+
+            /* Given two positive integers a and b, return a unique number c that
+            is mapped from a and b */
+            function cantorPairing(a,b) {
+                return (a + b) * (a + b + 1)/2 + a;
+            }
+
+            /** MAIN */
+            function main(nodes, graph) {
+                //create two identical graphs for search comparison
+                var svgBFS= d3.select("#graphSpace0");
+                svgBFS.append("text").text("BFS");
+                var svgDFS= d3.select("#graphSpace1");
+                svgDFS.append("text").text("DFS");
+                for (var [node, edges] of graph) {
+                    nodes.push(node);
+                    var cx= node.cx;
+                    var cy= node.cy;
+                    svgBFS.append("circle")
+                    .attr("id", "b" + cantorPairing(cx, cy))
+                    .attr("cx", cx)
+                    .attr("cy", cy)
+                    .attr("r", 10)
+                    .attr("fill", "black");
+                    svgDFS.append("circle")
+                    .attr("id", "d" + cantorPairing(cx, cy))
+                    .attr("cx", cx)
+                    .attr("cy", cy)
+                    .attr("r", 10)
+                    .attr("fill", "black");
+                    var ids= new Set();
+                    for (let n of edges) {
+                        var line_b= svgBFS.append("g");
+                        var line_d= svgDFS.append("g");
+                        var id= (cx * n.cx) + (cy * n.cy);
+                        if (!ids.has(id)) {
+                            line_b.append("line")
+                            .attr("id", "b"+ id)
+                            .attr("x1", cx)
+                            .attr("y1", cy)
+                            .attr("x2", n.cx)
+                            .attr("y2", n.cy)
+                            .attr("stroke", "black")
+                            .attr("opacity", .1)
+                            line_d.append("line")
+                            .attr("id", "d"+ id)
+                            .attr("x1", cx)
+                            .attr("y1", cy)
+                            .attr("x2", n.cx)
+                            .attr("y2", n.cy)
+                            .attr("stroke", "black")
+                            .attr("opacity", .1)
+                        }
+                        ids.add(id);
+                    }
+                }
+                var startNodeIndex= Math.floor(Math.random()*nodes.length);
+                var startNode= nodes[startNodeIndex];
+                var endNodeIndex= Math.floor(Math.random()*nodes.length);
+                var endNode= nodes[endNodeIndex];
+                //Perform a breadth first search
+                BFS(nodes, graph, startNode, endNode);
+                //Perform a depth first search
+                DFS(nodes, graph, startNode, endNode);
+            }
+
+            /* Display the final path found */
+            async function endDisplay(path, type) {
+                for (var i= 0; i < path.length; i++) {
+                    var node= path[i];
+                    var id= cantorPairing(node.cx, node.cy);
+                    if (type === ("d")) {
+                        id= "d"+ id;
+                    }
+                    else {
+                        id= "b"+ id;
+                    }
+                    if (i == path.length-1) {
+                        $("#"+id).css("fill", "red");
+                        await sleep(1000);
+                    }
+                    else if (i == 0) {
+                        $("#"+id).css("fill", "blue");
+                        await sleep(1000);
+                    }
+                    else {
+                        $("#"+id).css("fill", "green");
+                        await sleep(1000);
+                    }
+                }
+            }
+
+            //Call the main function
+            $(document).ready(function () {
+                var graph= makeGraph(50);
+                var nodes= []
+                main(nodes, graph);
+            });
+        </script>
+    </body>
+</html>
