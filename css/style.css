@@ -5,32 +5,65 @@ body {
 
 html {
   height: 100%;
+  width: 100%;
 }
 
-p {
+i {
+  padding: 10px;
+  font-size: 60px
+}
+
+canvas {
+  display: flex;
+  align-items: stretch;
+  align-content: center;
+}
+
+a {
+  color: #04080F
+}
+
+.back-to-top {
+  cursor: pointer;
+  display: none;
+  -moz-transform: rotate(270deg);
+  -webkit-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  transform: rotate(270deg);
+  overflow: hidden;
+  position: fixed;
+  bottom: 20px;
   color: #04080F;
+  right: 50%;
+  font-size: 30px;
+  text-decoration: none;
 }
 
-@-webkit-keyframes neon {
-  from {
-    -webkit-filter: drop-shadow( -5px -5px 5px #FFF);
-            filter: drop-shadow( -5px -5px 5px #FFF);
-  }
-  to {
-    -webkit-filter: drop-shadow( -5px -5px 5px  #35ba2a);
-            filter: drop-shadow( -5px -5px 5px  #35ba2a);
-  }
+.point-down {
+  cursor: pointer;
+  display: block;
+  -moz-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+  overflow: hidden;
+  position: fixed;
+  bottom: 20px;
+  color: #04080F;
+  right: 50%;
+  font-size: 30px;
+  text-decoration: none;
 }
 
-path {
-  stroke: black;
+.mobile-footer {
+  display: none;
+  width: 200px;
+  height: 200px;
 }
 
-.svg_div {
-  text-align: center;
-}
-
-#nameDraw {
+.name-draw {
   display: inline-flex;
   justify-content: center;
   margin: auto;
@@ -42,37 +75,40 @@ path {
   padding-bottom: 13%;
 }
 
-.parallax_0 {
-  height: 100%;
-  background-attachment: fixed;
-  background-size: cover;
+.footer {
+  text-align: center;
 }
 
-.parallax_1 {
+.svg-div {
+  text-align: center;
+}
+
+.parallax {
   height: 100%;
   background-attachment: fixed;
   text-align: center;
   background-size: cover;
   background-color: #35ba2a;
+  background: linear-gradient(#00E640, #52B3D9);
 }
 
 .header {
   display: inline-flex;
   width: 100%;
-  height: 13.5%;
+  height: 13%;
   background-color: white;
 }
 
-.header_left {
+.header-left {
   display: flex;
   width: 50%;
-  height: 13.5%;
+  height: 13%;
   margin-left: auto;
   margin-right: auto;
   justify-content: flex-start;
 }
 
-.header_right {
+.header-right {
   display: flex;
   width: 50%;
   height: 13.5%;
@@ -89,82 +125,48 @@ path {
   padding-top: 110px;
 }
 
-#back2Top {
-    cursor: pointer;
-    display: none;
-    -moz-transform: rotate(270deg);
-    -webkit-transform: rotate(270deg);
-    -o-transform: rotate(270deg);
-    -ms-transform: rotate(270deg);
-    transform: rotate(270deg);
-    overflow: hidden;
-    position: fixed;
-    bottom: 20px;
-    color: #04080F;
-    right: 50%;
-    font-size: 30px;
-    text-decoration: none;
-}
-
-#point_down {
-    cursor: pointer;
-    display: block;
-    -moz-transform: rotate(90deg);
-    -webkit-transform: rotate(90deg);
-    -o-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    transform: rotate(90deg);
-    overflow: hidden;
-    position: fixed;
-    bottom: 20px;
-    color: #04080F;
-    right: 50%;
-    font-size: 30px;
-    text-decoration: none;
-}
-
-i {
-  padding: 10px;
-}
-
-canvas {
-  display: flex;
-  align-items: stretch;
-  align-content: center;
-}
-
-.footer {
-  text-align: center;
-}
-
-#mobile_footer {
-  display: none;
-}
-
 .square {
-    float:left;
-    position: relative;
-    width: 30%;
-    padding-bottom : 30%; /* = width for a 1:1 aspect ratio */
-    margin:1.66%;
-    overflow:hidden;
-    background-color: #000;
+  float: left;
+  position: relative;
+  width: 30%;
+  padding-bottom: 30%;
+  margin: 1.66%;
+  overflow: hidden;
+  background-color: #22313F;
+  border-radius: 25px;
 }
 
 .content {
-    position:absolute;
-    height:80%; /* = 100% - 2*10% padding */
-    width:90%; /* = 100% - 2*5% padding */
-    padding: 10% 5%;
+  position: absolute;
+  height: 80%;
+  width: 90%;
+  padding: 10% 5%;
 }
-.table{
-    display:table;
-    height:100%;
-    width:100%;
+
+.table {
+  display: table;
+  height: 100%;
+  width: 100%;
 }
+
 .table-cell{
-    display:table-cell;
-    vertical-align:middle;
-    height:100%;
-    width:100%;
+  display: table-cell;
+  vertical-align: middle;
+  height: 100%;
+  width: 100%;
+}
+
+.table-cell > a > img {
+  border-radius: 25px;
+}
+
+@-webkit-keyframes neon {
+  from {
+    -webkit-filter: drop-shadow( -5px -5px 5px #FFF);
+            filter: drop-shadow( -5px -5px 5px #FFF);
+  }
+  to {
+    -webkit-filter: drop-shadow( -5px -5px 5px  #35ba2a);
+            filter: drop-shadow( -5px -5px 5px  #35ba2a);
+  }
 }
