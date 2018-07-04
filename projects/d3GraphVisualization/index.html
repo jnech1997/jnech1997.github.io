@@ -11,12 +11,12 @@
 
     <body>
         <h3 id="title">Graph Visualization of Search Algorithms</h3>
-        <div style= "width: 100%; height: 100%; text-align: center">
-            <div style= "display: inline-block; height: 100%; width: 45%">
+        <div class='search'>
+            <div class='graph-container'>
                 <p>Breadth First Search</p>
                 <svg id= "graphSpace0" height= "80%"></svg>
             </div>
-            <div style= "display: inline-block; height:100%; width:45%">
+            <div class='graph-container'>
                 <p>Depth First Search</p>
                 <svg id= "graphSpace1" height= "80%"></svg>
             </div>
@@ -41,11 +41,11 @@
                     endNode= settled.get(endNode);
                     if (endNode != null) {
                         var id= x * endNode.cx + y * endNode.cy;
-                        if (type === "d") {
-                            id= "d"+ id;
+                        if (type === "depth") {
+                            id= "depth"+ id;
                         }
                         else {
-                            id= "b"+ id;
+                            id= "breadth"+ id;
                         }
                         $("#"+id).css("stroke", "red");
                         $("#"+id).css("opacity", 1);
@@ -62,11 +62,11 @@
                 frontier.push(startNode);
                 while (!frontier.isEmpty()) {
                     var f= frontier.pop();
-                    if (f == endNode) {return endDisplay(path(settled, f, "d"), "d");}
+                    if (f == endNode) {return endDisplay(path(settled, f, "depth"), "depth");}
                     neighbors= graph.get(f);
                     for (let n of neighbors) {
                         var id= (f.cx * n.cx) + (f.cy * n.cy);
-                        id= "d"+ id;
+                        id= "depth"+ id;
                         $("#"+id).css("stroke", "magenta");
                         $("#"+id).css("opacity", 1);
                         await sleep(30);
@@ -90,11 +90,11 @@
                 frontier.enqueue(startNode, 0);
                 while (!frontier.isEmpty()) {
                     var f= frontier.dequeue();
-                    if (f == endNode) {return endDisplay(path(settled, f, "b"), "b");}
+                    if (f == endNode) {return endDisplay(path(settled, f, "breadth"), "breadth");}
                     neighbors= graph.get(f);
                     for (let n of neighbors) {
                         var id= (f.cx * n.cx) + (f.cy * n.cy);
-                        id= "b"+ id;
+                        id= "breadth"+ id;
                         $("#"+id).css("stroke", "magenta");
                         $("#"+id).css("opacity", 1);
                         await sleep(30);
@@ -120,21 +120,21 @@
             function main(nodes, graph) {
                 //create two identical graphs for search comparison
                 var svgBFS= d3.select("#graphSpace0");
-                svgBFS.append("text").text("BFS");
+                svgBFS.append("text").text("Breadth First Search");
                 var svgDFS= d3.select("#graphSpace1");
-                svgDFS.append("text").text("DFS");
+                svgDFS.append("text").text("Depth First Search");
                 for (var [node, edges] of graph) {
                     nodes.push(node);
                     var cx= node.cx;
                     var cy= node.cy;
                     svgBFS.append("circle")
-                    .attr("id", "b" + cantorPairing(cx, cy))
+                    .attr("id", "breadth" + cantorPairing(cx, cy))
                     .attr("cx", cx)
                     .attr("cy", cy)
                     .attr("r", 10)
                     .attr("fill", "black");
                     svgDFS.append("circle")
-                    .attr("id", "d" + cantorPairing(cx, cy))
+                    .attr("id", "depth" + cantorPairing(cx, cy))
                     .attr("cx", cx)
                     .attr("cy", cy)
                     .attr("r", 10)
@@ -146,7 +146,7 @@
                         var id= (cx * n.cx) + (cy * n.cy);
                         if (!ids.has(id)) {
                             line_b.append("line")
-                            .attr("id", "b"+ id)
+                            .attr("id", "breadth"+ id)
                             .attr("x1", cx)
                             .attr("y1", cy)
                             .attr("x2", n.cx)
@@ -154,7 +154,7 @@
                             .attr("stroke", "black")
                             .attr("opacity", .1)
                             line_d.append("line")
-                            .attr("id", "d"+ id)
+                            .attr("id", "depth"+ id)
                             .attr("x1", cx)
                             .attr("y1", cy)
                             .attr("x2", n.cx)
@@ -180,11 +180,11 @@
                 for (var i= 0; i < path.length; i++) {
                     var node= path[i];
                     var id= cantorPairing(node.cx, node.cy);
-                    if (type === ("d")) {
-                        id= "d"+ id;
+                    if (type === ("depth")) {
+                        id= "depth"+ id;
                     }
                     else {
-                        id= "b"+ id;
+                        id= "breadth"+ id;
                     }
                     if (i == path.length-1) {
                         $("#"+id).css("fill", "red");
