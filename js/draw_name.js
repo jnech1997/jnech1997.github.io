@@ -1,4 +1,4 @@
-const height = 740;
+const height = 600;
 const width = 880;
 const padding = 70;
 
@@ -31,19 +31,4 @@ name_draw.append('path')
   .attr('stroke-dashoffset', 10000)
   .transition()
   .duration(10000)
-  .attr('stroke-dashoffset', 0);
-
-name_draw.append('path')
-  .attr('id', 'projects')
-  .attr('stroke', 'black')
-  .attr('stroke-width', 4)
-  .attr('opacity', 1)
-  .attr('fill', 'none')
-  .attr('transform', 'translate(-50,700)')
-  .attr('d', 'M 200 0 L 200 50 L 200 50 L 200 0 L 250 0 L 250 50 L 200 50 L 200 100 L 200 50 L 250 50 L 300 50 L 300 0 L 350 0 L 300 50 L 350 0 L 400 0 L 400 50 L 350 50 L 350 0 L 400 0 L 450 0 L 450 50 L 450 100 L 400 100 L 450 100 L 450 50 L 500 50 L 450 50 L 500 0 L 500 0 L 450 0 L 450 50 L 500 50 L 550 50 L 550 0 L 600 0 L 550 0 L 550 50 L 600 50 L 550 50 L 600 50 L 650 50 L 650 0 L 650 50 L 650 100 L 650 0 L 600 0 L 650 0 L 700 0 L 650 0 L 650 50 L 700 50 L 750 50 L 750 0 L 800 0 L 750 0 L 750 50 L 800 50 L 800 50 L 800 100 L 750 100')
-  .attr('stroke-dasharray', '5000 5000')
-  .style('filter', 'url(#glow)')
-  .attr('stroke-dashoffset', 5000)
-  .transition()
-  .duration(5000)
   .attr('stroke-dashoffset', 0);
