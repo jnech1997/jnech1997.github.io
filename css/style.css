@@ -23,6 +23,11 @@ a {
   color: #04080F
 }
 
+span {
+  color: #fff;
+  font-weight: bold;
+}
+
 .back-to-top {
   cursor: pointer;
   display: none;
@@ -206,17 +211,6 @@ a {
   text-decoration: none;
 }
 
-@-webkit-keyframes neon {
-  from {
-    -webkit-filter: drop-shadow( -5px -5px 5px #FFF);
-            filter: drop-shadow( -5px -5px 5px #FFF);
-  }
-  to {
-    -webkit-filter: drop-shadow( -5px -5px 5px  #35ba2a);
-            filter: drop-shadow( -5px -5px 5px  #35ba2a);
-  }
-}
-
 .row {
     display: -ms-flexbox; /* IE10 */
     display: flex;
@@ -235,13 +229,23 @@ a {
     display: block;
 }
 
+.fakeMenu {
+  width: 800px;
+  box-sizing: border-box;
+  height: 25px;
+  background-color: #bbb;
+  margin: 0 auto;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
 .fakeButtons {
   height: 10px;
   width: 10px;
   border-radius: 50%;
   border: 1px solid #000;
   position: relative;
-  top: 6px;
+  top: 0px;
   left: 6px;
   background-color: #ff3b47;
   border-color: #9d252b;
@@ -260,54 +264,52 @@ a {
   border-color: #049931;
 }
 
-.fakeMenu {
-  width: 700px;
-  box-sizing: border-box;
-  height: 25px;
-  background-color: #bbb;
-  margin: 0 auto;
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
+.terminal-menu-text-div {
+  left: 200px;
+  display: inline-block;
+  position: relative;
+}
+
+.terminal-menu-text {
+  margin-top: 3px;
+  font-family: 'Space Mono', monospace;
+  font-size: 14px;
 }
 
 .fakeScreen {
   background-color: #151515;
   box-sizing: border-box;
-  width: 700px;
+  width: 800px;
   height: 500px;
   margin: 0 auto;
   padding: 20px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  margin-bottom: 60px;
+  margin-bottom: 80px;
 }
 
 .shell-script {
+  margin-top: 0;
   text-align: left;
   font-size: 1.25em;
   font-family: monospace;
   white-space: normal;
 }
 
-span {
-  color: #fff;
-  font-weight: bold;
-}
-
 .line1 {
-  color: #9CD9F0;
+  color: #00FF41;
 }
 
 .line2 {
-  color: #CDEE69;
+  color: #00FF41;
 }
 
 .line3 {
-  color: #E09690;
+  color: #00FF41;
 }
 
 .line4 {
-  color: #ff00ff;
+  color: #00FF41;
 }
 
 .line5 {
@@ -320,11 +322,22 @@ span {
 }
 
 
-.cursor6 {
+.cursor {
   -webkit-animation: blink 1s infinite;
   -moz-animation: blink 1s infinite;
   -o-animation: blink 1s infinite;
   animation: blink 1s infinite;
+}
+
+@-webkit-keyframes neon {
+  from {
+    -webkit-filter: drop-shadow( -5px -5px 5px #FFF);
+            filter: drop-shadow( -5px -5px 5px #FFF);
+  }
+  to {
+    -webkit-filter: drop-shadow( -5px -5px 5px  #35ba2a);
+            filter: drop-shadow( -5px -5px 5px  #35ba2a);
+  }
 }
 
 @-webkit-keyframes blink {

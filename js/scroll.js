@@ -11,7 +11,7 @@ function scrollHeader() {
 
 $(window).scroll(function() {
   const height = $(window).scrollTop();
-  if (height < 750) {
+  if (height < 725) {
     header.style.opacity = 1;
   }
   else {
