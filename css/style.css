@@ -72,10 +72,7 @@ span {
   display: inline-flex;
   justify-content: center;
   margin: auto;
-  -webkit-animation: neon 10s ease-in-out normal;
-  -moz-animation: neon 10s ease-in-out normal;
-  animation: neon 10s ease-in-out normal;
-  filter: drop-shadow( -5px -5px 5px  #35ba2a);
+  filter: drop-shadow( -5px -5px 5px  #00FF41);
   padding-top: 5%;
   padding-bottom: 13%;
 }
@@ -326,17 +323,6 @@ span {
   -moz-animation: blink 1s infinite;
   -o-animation: blink 1s infinite;
   animation: blink 1s infinite;
-}
-
-@-webkit-keyframes neon {
-  from {
-    -webkit-filter: drop-shadow( -5px -5px 5px #FFF);
-            filter: drop-shadow( -5px -5px 5px #FFF);
-  }
-  to {
-    -webkit-filter: drop-shadow( -5px -5px 5px  #35ba2a);
-            filter: drop-shadow( -5px -5px 5px  #35ba2a);
-  }
 }
 
 @-webkit-keyframes blink {
