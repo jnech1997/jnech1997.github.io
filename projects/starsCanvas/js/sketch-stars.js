@@ -18,7 +18,8 @@ const mapRange = (value, inputMin, inputMax, outputMin, outputMax) => {
 
 const sketch = ({context, width, height}) => {
     let agents = [];
-    for (let i = 0; i < 40; i++) {
+    let num_agents = width < 1000 ? 20 : 40;
+    for (let i = 0; i < num_agents; i++) {
         const x = randomRange(0, width);
         const y = randomRange(0, height);
         agents.push(new Agent(x, y));
