@@ -13,28 +13,28 @@ class Node {
   }
 }
 
-var makeGraph= function (size) {
-  var svgX= $('svg').css('width');
-  var svgY= $('svg').css('height');
+let makeGraph= function (size) {
+  let svgX= $('svg').css('width');
+  let svgY= $('svg').css('height');
   svgX= parseInt(svgX.substring(0, svgX.length-2));
   svgY= parseInt(svgY.substring(0, svgY.length-2));
-  var graph= new Map();
-  var nodes= [];
+  let graph= new Map();
+  let nodes= [];
   //create the list of nodes in the graph
-  for (var i= 0; i < size; i++) {
-    var cx= Math.floor(Math.random()*svgX);
-    var cy= Math.floor(Math.random()*svgY);
-    var newNode= new Node(cx, cy);
+  for (let i= 0; i < size; i++) {
+    let cx= Math.floor(Math.random()*svgX);
+    let cy= Math.floor(Math.random()*svgY);
+    let newNode= new Node(cx, cy);
     if (!nodes.includes(newNode)) {
       nodes.push(newNode);
     }
   }
   //for each node, create a set of edges to other nodes
-  for (var i in nodes) {
-    var numEdges= Math.floor(Math.random()*nodes.length/4) + 1;
+  for (let i in nodes) {
+    let numEdges= Math.floor(Math.random()*nodes.length/4) + 1;
     edges= new Set();
-    for (var e= 0; e < numEdges; e++) {
-      var randNodeIndex= Math.floor(Math.random()*nodes.length);
+    for (let e= 0; e < numEdges; e++) {
+      let randNodeIndex= Math.floor(Math.random()*nodes.length);
       endNode= nodes[randNodeIndex];
       if (!edges.has(endNode)) {
         edges.add(endNode);

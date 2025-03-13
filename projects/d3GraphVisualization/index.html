@@ -11,6 +11,9 @@
 
     <body>
         <h3 id="title">Graph Visualization of Search Algorithms</h3>
+        <div class="button-container">
+            <button class="refresh-button" onclick="window.location.reload()">Refresh Graph</button>
+        </div>
         <div class='search'>
             <div class='graph-container'>
                 <p>Breadth First Search</p>
@@ -33,14 +36,14 @@
             map of nodes to their backpointers along the path. endNode is the
             destination node along the path. */
             function path(settled, endNode, type) {
-                var backwards_path= [];
+                let backwards_path= [];
                 while (endNode != null) {
-                    var x= endNode.cx;
-                    var y= endNode.cy;
+                    let x= endNode.cx;
+                    let y= endNode.cy;
                     backwards_path.push(endNode);
                     endNode= settled.get(endNode);
                     if (endNode != null) {
-                        var id= x * endNode.cx + y * endNode.cy;
+                        let id= x * endNode.cx + y * endNode.cy;
                         if (type === "depth") {
                             id= "depth"+ id;
                         }
@@ -56,16 +59,16 @@
 
             /* Return a path from a start node to an end node using DFS */
             async function DFS(nodes, graph, startNode, endNode) {
-                var settled= new Map();
-                var frontier= new Stack();
+                let settled= new Map();
+                let frontier= new Stack();
                 settled.set(startNode, null);
                 frontier.push(startNode);
                 while (!frontier.isEmpty()) {
-                    var f= frontier.pop();
+                    let f= frontier.pop();
                     if (f == endNode) {return endDisplay(path(settled, f, "depth"), "depth");}
                     neighbors= graph.get(f);
                     for (let n of neighbors) {
-                        var id= (f.cx * n.cx) + (f.cy * n.cy);
+                        let id= (f.cx * n.cx) + (f.cy * n.cy);
                         id= "depth"+ id;
                         $("#"+id).css("stroke", "magenta");
                         $("#"+id).css("opacity", 1);
@@ -84,16 +87,16 @@
 
             /* Return a path from a start node to an end node using BFS */
             async function BFS(nodes, graph, startNode, endNode) {
-                var settled= new Map();
-                var frontier= new Queue();
+                let settled= new Map();
+                let frontier= new Queue();
                 settled.set(startNode, null);
                 frontier.enqueue(startNode, 0);
                 while (!frontier.isEmpty()) {
-                    var f= frontier.dequeue();
+                    let f= frontier.dequeue();
                     if (f == endNode) {return endDisplay(path(settled, f, "breadth"), "breadth");}
                     neighbors= graph.get(f);
                     for (let n of neighbors) {
-                        var id= (f.cx * n.cx) + (f.cy * n.cy);
+                        let id= (f.cx * n.cx) + (f.cy * n.cy);
                         id= "breadth"+ id;
                         $("#"+id).css("stroke", "magenta");
                         $("#"+id).css("opacity", 1);
@@ -119,14 +122,14 @@
             /** MAIN */
             function main(nodes, graph) {
                 //create two identical graphs for search comparison
-                var svgBFS= d3.select("#graphSpace0");
+                let svgBFS= d3.select("#graphSpace0");
                 svgBFS.append("text").text("Breadth First Search");
-                var svgDFS= d3.select("#graphSpace1");
+                let svgDFS= d3.select("#graphSpace1");
                 svgDFS.append("text").text("Depth First Search");
-                for (var [node, edges] of graph) {
+                for (let [node, edges] of graph) {
                     nodes.push(node);
-                    var cx= node.cx;
-                    var cy= node.cy;
+                    let cx= node.cx;
+                    let cy= node.cy;
                     svgBFS.append("circle")
                     .attr("id", "breadth" + cantorPairing(cx, cy))
                     .attr("cx", cx)
@@ -139,11 +142,11 @@
                     .attr("cy", cy)
                     .attr("r", 10)
                     .attr("fill", "black");
-                    var ids= new Set();
+                    let ids= new Set();
                     for (let n of edges) {
-                        var line_b= svgBFS.append("g");
-                        var line_d= svgDFS.append("g");
-                        var id= (cx * n.cx) + (cy * n.cy);
+                        let line_b= svgBFS.append("g");
+                        let line_d= svgDFS.append("g");
+                        let id= (cx * n.cx) + (cy * n.cy);
                         if (!ids.has(id)) {
                             line_b.append("line")
                             .attr("id", "breadth"+ id)
@@ -165,10 +168,10 @@
                         ids.add(id);
                     }
                 }
-                var startNodeIndex= Math.floor(Math.random()*nodes.length);
-                var startNode= nodes[startNodeIndex];
-                var endNodeIndex= Math.floor(Math.random()*nodes.length);
-                var endNode= nodes[endNodeIndex];
+                let startNodeIndex= Math.floor(Math.random()*nodes.length);
+                let startNode= nodes[startNodeIndex];
+                let endNodeIndex= Math.floor(Math.random()*nodes.length);
+                let endNode= nodes[endNodeIndex];
                 //Perform a breadth first search
                 BFS(nodes, graph, startNode, endNode);
                 //Perform a depth first search
@@ -177,9 +180,9 @@
 
             /* Display the final path found */
             async function endDisplay(path, type) {
-                for (var i= 0; i < path.length; i++) {
-                    var node= path[i];
-                    var id= cantorPairing(node.cx, node.cy);
+                for (let i= 0; i < path.length; i++) {
+                    let node= path[i];
+                    let id= cantorPairing(node.cx, node.cy);
                     if (type === ("depth")) {
                         id= "depth"+ id;
                     }
@@ -191,11 +194,12 @@
                         await sleep(1000);
                     }
                     else if (i == 0) {
-                        $("#"+id).css("fill", "blue");
+                        $("#"+id).css("fill", "green");
                         await sleep(1000);
                     }
                     else {
-                        $("#"+id).css("fill", "green");
+                        $("#"+id).css("fill", "blue");
+                        $("#"+id).css("stroke", "yellow");
                         await sleep(1000);
                     }
                 }
@@ -203,8 +207,8 @@
 
             //Call the main function
             $(document).ready(function () {
-                var graph= makeGraph(50);
-                var nodes= []
+                let graph= makeGraph(50);
+                let nodes= []
                 main(nodes, graph);
             });
         </script>
