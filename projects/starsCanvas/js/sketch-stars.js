@@ -15,7 +15,7 @@ const mapRange = (value, inputMin, inputMax, outputMin, outputMax) => {
     return (outputMax - outputMin) * p + outputMin;
 }
 
-
+/** Draw the canvas */
 const sketch = ({context, width, height}) => {
     let agents = [];
     let num_agents = width < 1000 ? 20 : 40;
@@ -28,7 +28,11 @@ const sketch = ({context, width, height}) => {
     return ({context, width, height}) => {
         context.fillStyle = "black";
         context.fillRect(0, 0, width, height);
-
+        /** 
+         * Go through each pair of agents,
+         * calculate the distance between them,
+         * and draw a line if they are close enough.
+        */
         for (let i = 0; i < agents.length; i++) {
             const agent = agents[i];
             for (let j = i + 1; j < agents.length; j++) {
@@ -37,9 +41,7 @@ const sketch = ({context, width, height}) => {
                 if (dist > 200) {
                     continue;
                 }
-
                 context.lineWidth = mapRange(dist, 0, 200, 13, 1);
-
                 context.strokeStyle = "#36454F";
                 context.fillStyle = "#00FFFF";
                 context.beginPath();
@@ -49,6 +51,7 @@ const sketch = ({context, width, height}) => {
             }
         }
 
+        /** Move each of the agents by their velocity at each sketch frame update */
         for (let agent of agents) {
             agent.update();
             agent.draw(context);
@@ -57,8 +60,10 @@ const sketch = ({context, width, height}) => {
     }
 }
 
+/** MAIN: entry to sketch */
 canvasSketch(sketch, settings);
 
+/** Point on the canvas */
 class Vector {
     constructor(x, y) {
         this.x = x;
@@ -72,6 +77,7 @@ class Vector {
     }
 }
 
+/** Moving circle */
 class Agent {
     constructor(x, y) {
         this.pos =  new Vector(x, y);
